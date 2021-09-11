@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com</groupId>
-	<artifactId>parseZip</artifactId>
+	<artifactId>s3-parquet-bootstrap</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>parseZip</name>
+	<name>s3-parquet-bootstrap</name>
 	<description>An application to open zip and extract csv</description>
 	<properties>
 		<java.version>11</java.version>
