@@ -1,4 +1,4 @@
-package com.parseZip;
+package com.zipToParquet;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;

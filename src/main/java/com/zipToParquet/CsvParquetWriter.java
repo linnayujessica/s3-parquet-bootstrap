@@ -1,4 +1,4 @@
-package com.parseZip;
+package com.zipToParquet;
 
 import org.apache.parquet.hadoop.ParquetWriter;
 import org.apache.parquet.hadoop.api.WriteSupport;

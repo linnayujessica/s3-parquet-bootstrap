@@ -1,10 +1,10 @@
-package com.parseZip;
+package com.zipToParquet;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ParseZipApplicationTests {
+class ZipToParquetApplicationTests {
 
 	@Test
 	void contextLoads() {

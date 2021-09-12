@@ -1,4 +1,4 @@
-package com.parseZip;
+package com.zipToParquet;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.parquet.column.ColumnDescriptor;
