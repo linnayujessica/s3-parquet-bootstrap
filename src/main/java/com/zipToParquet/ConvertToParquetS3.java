@@ -26,9 +26,9 @@ public class ConvertToParquetS3 {
         ZipToParquet();
     }
 
-    private final static String bucketName = "candidate-71-s3-bucket";
-    private final static String accessKeyId = "AKIAZUO64Q7BLCAZZXGV";
-    private final static String secretAccessKey = "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";
+    private final static String bucketName = "******";
+    private final static String accessKeyId = "***************";
+    private final static String secretAccessKey = "*****************************";
     private final static String awsRegion = "ap-southeast-2";
 
     private final static String csvDir = "src/main/resources/unzip";
