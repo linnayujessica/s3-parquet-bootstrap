@@ -6,6 +6,7 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.*;
+import com.opencsv.CSVReader;
 import org.apache.parquet.hadoop.api.WriteSupport;
 import org.apache.parquet.schema.MessageType;
 import org.apache.parquet.schema.MessageTypeParser;
@@ -58,24 +59,20 @@ public class ConvertToParquetS3 {
                 String[] columns = firstLine.split(",");
                 StringBuilder schema = new StringBuilder("message csv {");
                 for(int i=0 ; i<columns.length ; i++) {
-                    schema.append("required binary column_"+(i+1)+" = "+(i+1)+"; ");
+                        schema.append("required binary column_").append(i+1).append(" = ").append(i+1).append("; ");
                 }
                 schema.append("}");
                 MessageType messageType = MessageTypeParser.parseMessageType(schema.toString());
                 WriteSupport<List<String>> writeSupport = new CsvWriteSupport(messageType);
 
-                String line;
                 try (CsvParquetWriter writer = new CsvParquetWriter(new org.apache.hadoop.fs.Path(parquetPath.toUri()), writeSupport);
-                     BufferedReader br = new BufferedReader(new FileReader(csvFile.getPath()))) {
-
-                    while((line = br.readLine()) != null) {
+                     CSVReader reader = new CSVReader(new FileReader(csvFile))) {
+                    for(String[] lines : reader.readAll()) {
                         // filter lines which contain the word "ellipsis" in any fields
-                        String[] lines = line.split(",");
                         List list = Arrays.stream(lines).filter(s -> s.contains("ellipsis")).collect(Collectors.toList());
                         if(!list.isEmpty()) {
                             // write specific lines to parquet
-                            String[] fields = line.split(",");
-                            writer.write(Arrays.asList(fields));
+                            writer.write(Arrays.asList(lines));
                         }
                     }
                 }
